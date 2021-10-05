@@ -33,9 +33,7 @@ dependencies {
 def user = 'ZKHAN41'
 
 task packageDistribution(type: Zip) {
-    doFirst{
-        DirectoryScanner.removeDefaultExclude("**/.gitignore")
-    }
+
     dependsOn check
     archiveFileName = "${user}-${rootProject.name}.zip"
     destinationDirectory = file("$buildDir/dist")
