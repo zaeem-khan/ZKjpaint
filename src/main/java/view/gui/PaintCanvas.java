@@ -12,9 +12,6 @@ import org.slf4j.LoggerFactory;
  */
 public class PaintCanvas extends JComponent {
 
-    // part of the example below.  Please removed when the example is removed
-    private int paintCount = 0;
-
     private static final Logger log = LoggerFactory.getLogger(PaintCanvas.class);
 
     public Graphics2D getGraphics2D() {
