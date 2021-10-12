@@ -1,8 +1,16 @@
+/*
+ * Assignment: 1
+ * Topic: JPaint
+ * Author: Jeffrey Sharpe
+ */
 package controller.command;
 
 import java.util.Stack;
 import controller.interfaces.Undoable;
 
+/**
+ * CommandHistory supports the menu choices Undo and Redo
+ */
 public class CommandHistory {
   private static final Stack<Undoable> undoStack = new Stack<>();
   private static final Stack<Undoable> redoStack = new Stack<>();

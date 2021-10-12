@@ -1,40 +1,55 @@
+/*
+ * Assignment: 1
+ * Topic: JPaint
+ * Author: Dan Walker
+ */
 package controller.command;
 
-import controller.Point;
-import controller.interfaces.ICommand;
+import controller.interfaces.Command;
 import controller.interfaces.Undoable;
-import java.awt.Graphics2D;
+import model.interfaces.Shape;
 import model.interfaces.UserChoices;
-import model.shape.Picture;
-import model.shape.Rectangle;
+import model.interfaces.Picture;
+import model.picture.Point;
+import model.picture.ShapeImpl;
 import view.gui.PaintCanvas;
 
-public class CreateShapeCommand implements ICommand, Undoable {
-  Point start, end;
-  UserChoices userChoices;
-  Rectangle rectangle;
-  Picture picture;
-  public CreateShapeCommand(UserChoices userChoices, Point start, Point end) {
+/**
+ * CreateShapeCommand is responsible for creating a given shape.
+ * It can be stored and executed at any time because it contains all
+ * of the information needed to create its assigned shape.
+ */
+public class CreateShapeCommand implements Command, Undoable {
+
+  private Shape shape;
+  private UserChoices userChoices;
+  private PaintCanvas canvas;
+  private Picture picture;
+  private Point start;
+  private Point end;
+
+  public CreateShapeCommand(UserChoices userChoices, PaintCanvas canvas, Picture picture, Point start, Point end) {
+    this.userChoices = userChoices;
+    this.canvas = canvas;
+    this.picture = picture;
     this.start = start;
     this.end = end;
-    this.userChoices = userChoices;
-    this.rectangle = new Rectangle(start, end, userChoices);
-  }
-
-  @Override
-  public void run() {
-    System.out.println("running...");
-    picture.addShape(this.rectangle);
     CommandHistory.add(this);
   }
 
   @Override
   public void undo() {
-    CommandHistory.undo();
+    picture.remove(shape);
   }
 
   @Override
-  public  void redo() {
-    CommandHistory.redo();
+  public void redo() {
+    picture.add(shape);
+  }
+
+  @Override
+  public void run() {
+    shape = new ShapeImpl(start, end, userChoices.getActivePrimaryColor());
+    picture.add(shape);
   }
 }

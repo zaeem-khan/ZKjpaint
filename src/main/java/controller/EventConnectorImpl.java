@@ -1,20 +1,28 @@
+/*
+ * Assignment: 1
+ * Topic: JPaint
+ * Author: Jeffrey Sharpe, Dan Walker
+ */
 package controller;
 
-import controller.command.CommandHistory;
+import controller.command.CommandController;
+import controller.interfaces.EventConnector;
 import model.interfaces.UserChoices;
 import view.EventName;
 import view.interfaces.UiModule;
 
 /**
- * @see controller.EventConnector
+ * @see EventConnector
  */
 public class EventConnectorImpl implements EventConnector {
     private final UiModule uiModule;
     private final UserChoices userChoices;
+    private final CommandController commandController;
 
-    public EventConnectorImpl(UiModule uiModule, UserChoices userChoices) {
+    public EventConnectorImpl(UiModule uiModule, UserChoices userChoices, CommandController commandController) {
         this.uiModule = uiModule;
         this.userChoices = userChoices;
+        this.commandController = commandController;
     }
 
     @Override
@@ -28,6 +36,8 @@ public class EventConnectorImpl implements EventConnector {
         uiModule.addEvent(EventName.CHOOSE_SECONDARY_COLOR, () -> userChoices.setActiveSecondaryColor());
         uiModule.addEvent(EventName.CHOOSE_SHADING_TYPE, () -> userChoices.setActiveShadingType());
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> userChoices.setActiveStartAndEndPointMode());
-        uiModule.addEvent(EventName.UNDO, CommandHistory::undo);
+
+        uiModule.addEvent(EventName.UNDO, commandController::onUndo);
+        uiModule.addEvent(EventName.REDO, commandController::onRedo);
     }
 }

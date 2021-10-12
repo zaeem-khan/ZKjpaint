@@ -4,6 +4,7 @@ import controller.command.CommandController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import model.picture.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,9 +1,6 @@
-import org.apache.tools.ant.DirectoryScanner
-
 
 plugins {
     id 'java-library'
-    id 'application'
 }
 
 group 'edu.depaul'
@@ -33,7 +30,6 @@ dependencies {
 def user = 'ZKHAN41'
 
 task packageDistribution(type: Zip) {
-
     dependsOn check
     archiveFileName = "${user}-${rootProject.name}.zip"
     destinationDirectory = file("$buildDir/dist")
@@ -44,10 +40,9 @@ task packageDistribution(type: Zip) {
         include "gradlew"
         include "gradlew.bat"
         include "settings.gradle"
-        include ".gitignore"
     }
 
-    into("${rootProject.name}")
+    into("${user}-${rootProject.name}")
 }
 
 test {
@@ -61,10 +56,3 @@ check {
     finalizedBy packageDistribution
 }
 
-ext {
-    javaMainClass = 'main.Main'
-}
-
-application {
-    mainClassName = javaMainClass
-}

@@ -1,8 +1,10 @@
 package model.interfaces;
 
-
 import java.awt.Graphics2D;
 
+/**
+ * Represents an individual shape drawn by the user.
+ */
 public interface Shape {
-  public void draw(Graphics2D graphics2D);
+  void draw(Graphics2D graphics);
 }

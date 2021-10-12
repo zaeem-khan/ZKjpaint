@@ -3,7 +3,7 @@
  * SE350
  *  Assignment 1
  */
-package controller;
+package model.picture;
 
 public class Point {
   private int x;

@@ -1,5 +1,5 @@
 package controller.interfaces;
 
-public interface ICommand {
+public interface Command {
   void run();
 }
