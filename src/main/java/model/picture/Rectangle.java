@@ -1,34 +1,18 @@
-/*
- * Assignment: 1
- * Topic: JPaint
- * Author: Dan Walker
- */
 package model.picture;
 
 import java.awt.Graphics2D;
 import model.ShapeColor;
 import model.interfaces.Shape;
 
-/**
- * @see model.interfaces.Shape
- */
-public class ShapeImpl implements Shape {
+public class Rectangle implements Shape {
 
   private Point start;
   private Point end;
   private ShapeColor color;
 
-  public ShapeImpl(Point start, Point end, ShapeColor color) {
+  public Rectangle(Point start, Point end, ShapeColor color) {
     normalizePoints(start, end);
     this.color = color;
-  }
-
-  public Point getStart() {
-    return start;
-  }
-
-  public Point getEnd() {
-    return end;
   }
 
   @Override
@@ -45,12 +29,6 @@ public class ShapeImpl implements Shape {
     return end.getY() - start.getY();
   }
 
-  /**
-   * The beginning and ending points are not necessarily the points needed when drawing.
-   * This function figures out the better drawing points.
-   * @param firstPoint location of the mouse when first clicked
-   * @param endPoint location of mouse when finally released
-   */
   private void normalizePoints(Point firstPoint, Point endPoint) {
     int newStartX;
     int newStartY;

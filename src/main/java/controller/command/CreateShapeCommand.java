@@ -10,8 +10,10 @@ import controller.interfaces.Undoable;
 import model.interfaces.Shape;
 import model.interfaces.UserChoices;
 import model.interfaces.Picture;
+import model.picture.Ellipse;
 import model.picture.Point;
-import model.picture.ShapeImpl;
+import model.picture.Rectangle;
+import model.picture.Triangle;
 import view.gui.PaintCanvas;
 
 /**
@@ -49,7 +51,20 @@ public class CreateShapeCommand implements Command, Undoable {
 
   @Override
   public void run() {
-    shape = new ShapeImpl(start, end, userChoices.getActivePrimaryColor());
+    switch(userChoices.getActiveShapeType()) {
+      case RECTANGLE:
+        shape = new Rectangle(start, end, userChoices.getActivePrimaryColor());
+        break;
+      case TRIANGLE:
+        shape = new Triangle(start, end, userChoices.getActivePrimaryColor());
+        break;
+      case ELLIPSE:
+        shape = new Ellipse(start, end, userChoices.getActivePrimaryColor());
+        break;
+      default:
+        throw new IllegalArgumentException("Invalid shape type given");
+    }
+
     picture.add(shape);
   }
 }
