@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import model.ShapeColor;
 import model.interfaces.DrawStrategy;
+import model.interfaces.Region;
 import model.interfaces.Shape;
 
 

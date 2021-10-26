@@ -4,6 +4,7 @@ import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import java.util.List;
 import model.interfaces.Picture;
+import model.interfaces.Region;
 import model.interfaces.Shape;
 
 

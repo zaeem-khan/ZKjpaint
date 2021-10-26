@@ -5,9 +5,11 @@
  */
 package controller.command;
 
+import controller.ShapeBuilder;
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import java.awt.Color;
+import model.interfaces.Region;
 import model.interfaces.Shape;
 import model.interfaces.UserChoices;
 import model.interfaces.Picture;

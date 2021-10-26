@@ -5,9 +5,11 @@
  */
 package controller.command;
 
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 import model.picture.Point;
 import model.interfaces.Picture;
+import model.picture.RegionImpl;
 import view.gui.PaintCanvas;
 import controller.interfaces.Undoable;
 import controller.interfaces.Command;

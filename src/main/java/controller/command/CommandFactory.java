@@ -3,6 +3,7 @@ package controller.command;
 import controller.interfaces.Command;
 import model.MouseMode;
 import model.interfaces.Picture;
+import model.interfaces.Region;
 import model.interfaces.UserChoices;
 import view.gui.PaintCanvas;
 

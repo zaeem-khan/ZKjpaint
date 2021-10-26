@@ -2,15 +2,17 @@ package model.picture;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import model.interfaces.DrawStrategy;
+import model.interfaces.Region;
 import model.interfaces.Shape;
 
 public class ShapeImpl implements Shape {
 
   private final Color color;
   private final Region region;
-  private  DrawStrategy drawStrategy = null;
+  private DrawStrategy drawStrategy = null;
 
-  public ShapeImpl(Region region, Color Color, DrawStrategy drawStrategy) {
+  public ShapeImpl(Region region, Color color, DrawStrategy drawStrategy) {
     this.region = region;
     this.color = color;
     this.drawStrategy = drawStrategy;

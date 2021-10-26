@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.Color;
 import model.ShapeType;
+import model.interfaces.DrawStrategy;
+import model.interfaces.Region;
 import model.interfaces.Shape;
 import model.picture.EllipseDrawer;
 import model.picture.RectangleDrawer;
