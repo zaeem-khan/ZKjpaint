@@ -27,6 +27,5 @@ public class CommandFactory {
     }
     return cmd;
     }
-  }
-
 }
+

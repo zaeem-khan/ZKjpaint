@@ -32,6 +32,7 @@ public class MoveShapeCommand implements Command, Undoable {
     movedShapes = picture.getSelected();
     deltaX = region.getDeltaX();
     deltaY = region.getDeltaY();
+    moveShapes(deltaX, deltaY);
   }
 
   private void moveShapes(int dx, int dy) {

@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import model.interfaces.Picture;
+import model.interfaces.Region;
 import model.interfaces.Shape;
 
 /**
@@ -17,6 +18,7 @@ import model.interfaces.Shape;
 public class PictureImpl implements Picture {
 
   private final List<Shape> elements = new ArrayList<>();
+  private final List<Shape> selected = new ArrayList<>();
 
   @Override
   public void add(Shape shape) {
@@ -35,7 +37,24 @@ public class PictureImpl implements Picture {
     }
   }
 
+  @Override
+  public void select(Region selectedArea) {
+    selected.clear();
+    elements.forEach((shape) -> {
+      if (selectedArea.overlaps(shape.region())) {
+        selected.add(shape);
+      }
+    });
+
+    System.out.println("Selected count: " + selected.size());
+  }
+
   public int size() {
     return elements.size();
+  }
+
+  @Override
+  public List<Shape> getSelected() {
+    return selected;
   }
 }
