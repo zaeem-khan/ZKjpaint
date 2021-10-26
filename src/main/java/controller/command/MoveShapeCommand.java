@@ -2,11 +2,10 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
+import java.util.List;
 import model.interfaces.Picture;
 import model.interfaces.Shape;
-import model.interfaces.UserChoices;
-import model.picture.Point;
-import view.gui.PaintCanvas;
+
 
 /**
  * MoveShapeCommand is responsible for moving existing shapes from
@@ -14,33 +13,40 @@ import view.gui.PaintCanvas;
  */
 
 public class MoveShapeCommand implements Command, Undoable {
-  private Shape shape;
-  private UserChoices userChoices;
-  private PaintCanvas canvas;
-  private Picture picture;
-  private Point start;
-  private Point end;
+  private List<Shape> movedShapes;
+  private int deltaX;
+  private int deltaY;
+  private final Region region;
+  private final Picture picture;
 
-  public MoveShapeCommand(UserChoices userChoices, PaintCanvas canvas, Picture picture, Point start, Point end) {
-    this.userChoices = userChoices;
-    this.canvas = canvas;
+  public MoveShapeCommand(Picture picture, Region region) {
+    this.region = region;
     this.picture = picture;
-    this.start = start;
-    this.end = end;
-  }
 
-  @Override
-  public void undo() {
-
-  }
-
-  @Override
-  public void redo() {
-
+    CommandHistory.add(this);
   }
 
   @Override
   public void run() {
-
+    movedShapes = picture.getSelected();
+    deltaX = region.getDeltaX();
+    deltaY = region.getDeltaY();
   }
+
+  private void moveShapes(int dx, int dy) {
+    for (Shape shape : movedShapes) {
+      shape.move(dx, dy);
+    }
+  }
+
+  @Override
+  public void undo() {
+    moveShapes(deltaX * -1, deltaY * -1);
+  }
+
+  @Override
+  public void redo() {
+    moveShapes(deltaX, deltaY);
+  }
+
 }

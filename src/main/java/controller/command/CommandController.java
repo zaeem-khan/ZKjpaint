@@ -28,23 +28,9 @@ public class CommandController {
   }
 
   public void onDraw(Point start, Point end) {
-    Command cmd;
-    switch(choices.getActiveMouseMode()) {
-      case DRAW:
-        cmd = new CreateShapeCommand(choices, canvas, picture, start, end);
-        cmd.run();
-        break;
-      case MOVE:
-        cmd = new MoveShapeCommand(choices, canvas, picture, start, end);
-        cmd.run();
-        break;
-      case SELECT:
-        cmd = new SelectShapeCommand(picture, start, end);
-        cmd.run();
-        break;
-      default:
-        throw new IllegalArgumentException("Invalid mouse mode given");
-    }
+    Region region = new RegionImpl(start, end);
+    Command cmd = CommandFactory.makeCommand(choices, canvas, picture, region);
+    cmd.run();
 
     canvas.repaint();
   }
