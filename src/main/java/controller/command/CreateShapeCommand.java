@@ -50,10 +50,13 @@ public class CreateShapeCommand implements Command, Undoable {
   public void run() {
     ShapeBuilder builder = new ShapeBuilder();
     Color fillColor = userChoices.getActivePrimaryColor().value;
+    Color borderColor = userChoices.getActiveSecondaryColor().value;
     builder
         .setFillColor(fillColor)
-            .setRegion(region)
-                .setType(userChoices.getActiveShapeType());
+        .setBorderColor(borderColor)
+        .setRegion(region)
+        .setShadingType(userChoices.getActiveShapeShadingType())
+        .setType(userChoices.getActiveShapeType());
     shape = builder.build();
     picture.add(shape);
   }

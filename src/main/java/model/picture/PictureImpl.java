@@ -28,6 +28,7 @@ public class PictureImpl implements Picture {
   @Override
   public void remove(Shape shape) {
     elements.remove(shape);
+    selected.remove(shape);
   }
 
   @Override

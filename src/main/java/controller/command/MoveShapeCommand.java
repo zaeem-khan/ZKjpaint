@@ -2,6 +2,7 @@ package controller.command;
 
 import controller.interfaces.Command;
 import controller.interfaces.Undoable;
+import java.util.ArrayList;
 import java.util.List;
 import model.interfaces.Picture;
 import model.interfaces.Region;
@@ -14,7 +15,7 @@ import model.interfaces.Shape;
  */
 
 public class MoveShapeCommand implements Command, Undoable {
-  private List<Shape> movedShapes;
+  private List<Shape> movedShapes = new ArrayList<>();
   private int deltaX;
   private int deltaY;
   private final Region region;
@@ -29,7 +30,7 @@ public class MoveShapeCommand implements Command, Undoable {
 
   @Override
   public void run() {
-    movedShapes = picture.getSelected();
+    movedShapes.addAll(picture.getSelected());
     deltaX = region.getDeltaX();
     deltaY = region.getDeltaY();
     moveShapes(deltaX, deltaY);

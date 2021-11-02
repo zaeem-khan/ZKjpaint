@@ -9,6 +9,8 @@ import java.awt.Graphics2D;
 public interface Shape {
   void draw(Graphics2D graphics);
   Color fillColor();
+  Color borderColor();
   Region region();
   void move(int deltaX, int deltaY);
+  void drawSelected(Graphics2D graphics);
 }

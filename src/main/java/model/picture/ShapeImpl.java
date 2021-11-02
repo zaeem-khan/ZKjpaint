@@ -8,26 +8,43 @@ import model.interfaces.Shape;
 
 public class ShapeImpl implements Shape {
 
-  private final Color color;
+  private final Color fillColor;
   private final Region region;
-  private DrawStrategy drawStrategy = null;
+  private final Color borderColor;
+  private DrawStrategy fillStrategy = null;
+  private DrawStrategy borderStrategy = null;
+  private DrawStrategy selectedStrategy = null;
 
-  public ShapeImpl(Region region, Color color, DrawStrategy drawStrategy) {
+  public ShapeImpl(
+      Region region,
+      Color fillColor,
+      Color borderColor,
+      DrawStrategy fillStrategy,
+      DrawStrategy borderStrategy,
+      DrawStrategy selectedStrategy) {
     this.region = region;
-    this.color = color;
-    this.drawStrategy = drawStrategy;
+    this.fillColor = fillColor;
+    this.borderColor = borderColor;
+    this.fillStrategy = fillStrategy;
+    this.borderStrategy = borderStrategy;
+    this.selectedStrategy = selectedStrategy;
   }
 
-  public Color fillColor() { return color; }
-
+  public Color fillColor() { return fillColor; }
+  public Color borderColor() { return borderColor; }
   public Region region() {return region; }
 
   @Override
   public void draw(Graphics2D graphics) {
-    drawStrategy.draw(graphics, this);
+    fillStrategy.draw(graphics, this);
+    borderStrategy.draw(graphics, this);
+
   }
 
   public void move(int x, int y) {
     region.move(x, y);
   }
+
+  @Override
+  public void drawSelected(Graphics2D graphics) { selectedStrategy.draw(graphics, this); }
 }
