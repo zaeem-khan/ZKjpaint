@@ -33,7 +33,7 @@ public class TriangleExpert extends DrawExpert {
     int[] y = getYArray(region);
 
     Polygon p = new Polygon(x, y, NUM_SIDES);
-    graphics.fillPolygon(p);
+    graphics.drawPolygon(p);
   }
 
 

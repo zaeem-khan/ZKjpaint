@@ -23,7 +23,7 @@ public class EllipseExpert extends DrawExpert {
   }
 
   private static void drawBorder(Graphics2D graphics, Region region) {
-    graphics.fill(new Ellipse2D.Double(region.getX(), region.getY(), region.getWidth(), region.getHeight()));
+    graphics.draw(new Ellipse2D.Double(region.getX(), region.getY(), region.getWidth(), region.getHeight()));
   }
 
   public static void drawSelected(Graphics2D graphics, Shape shape) {
