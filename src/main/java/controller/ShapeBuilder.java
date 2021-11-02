@@ -6,12 +6,12 @@ import model.ShapeType;
 import model.interfaces.DrawStrategy;
 import model.interfaces.Region;
 import model.interfaces.Shape;
-import model.picture.EllipseDrawer;
+import model.picture.EllipseExpert;
 import model.picture.NullDrawer;
-import model.picture.RectangleDrawer;
+import model.picture.RectangleExpert;
 import model.picture.ShapeDrawer;
 import model.picture.ShapeImpl;
-import model.picture.TriangleDrawer;
+import model.picture.TriangleExpert;
 
 public class ShapeBuilder {
   private Color fillColor;
@@ -37,10 +37,12 @@ public class ShapeBuilder {
   
   public ShapeBuilder setBorderColor(Color color) {
     this.borderColor = color;
+    return this;
   }
   
   public ShapeBuilder setShadingType(ShapeShadingType shadingType) {
     this.shadingType = shadingType;
+    return this;
   }
 
   public Shape build() {
@@ -49,7 +51,7 @@ public class ShapeBuilder {
     DrawStrategy borderStrategy = new NullDrawer();
     DrawStrategy selectedStrategy;
     Shape newShape;
-    DrawStrategy drawStrategy;
+    DrawStrategy drawStrategy = null;
 
     switch (type) {
       
@@ -84,7 +86,7 @@ public class ShapeBuilder {
         throw new IllegalArgumentException("Unknown ShapeShadingType");
     }
 
-    newShape = new ShapeImpl(region, fillColor, borderColor, drawStrategy, shadingType);
+    newShape = new ShapeImpl(region, fillColor, borderColor, fillStrategy, borderStrategy, selectedStrategy, shadingType);
     return newShape;
   }
 }

@@ -7,6 +7,5 @@ import model.interfaces.Shape;
 public class NullDrawer implements DrawStrategy {
   @Override
   public void draw(Graphics2D graphics, Shape shape) {
-
   }
 }

@@ -2,6 +2,7 @@ package model.picture;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import model.ShapeShadingType;
 import model.interfaces.DrawStrategy;
 import model.interfaces.Region;
 import model.interfaces.Shape;
@@ -21,7 +22,7 @@ public class ShapeImpl implements Shape {
       Color borderColor,
       DrawStrategy fillStrategy,
       DrawStrategy borderStrategy,
-      DrawStrategy selectedStrategy) {
+      DrawStrategy selectedStrategy, ShapeShadingType shadingType) {
     this.region = region;
     this.fillColor = fillColor;
     this.borderColor = borderColor;
