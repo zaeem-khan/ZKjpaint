@@ -1,9 +1,11 @@
 package controller.command;
 
 import controller.interfaces.Command;
+import java.util.List;
 import model.MouseMode;
 import model.interfaces.Picture;
 import model.interfaces.Region;
+import model.interfaces.Shape;
 import model.interfaces.UserChoices;
 import view.gui.PaintCanvas;
 
@@ -26,6 +28,10 @@ public class CommandFactory {
         throw new IllegalArgumentException("Unknown mouse mode");
     }
     return cmd;
+    }
+
+    public static Command makePasteCommand(Picture picture, List<Shape> contents, PaintCanvas canvas) {
+    return new PasteShapeCommand(picture, contents, canvas);
     }
 }
 

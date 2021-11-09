@@ -5,6 +5,7 @@
  */
 package controller.command;
 
+import controller.Clipboard;
 import model.interfaces.Region;
 import model.interfaces.UserChoices;
 import model.picture.Point;
@@ -22,11 +23,13 @@ public class CommandController {
   private final PaintCanvas canvas;
   private final UserChoices choices;
   private final Picture picture;
+  private final Clipboard clipboard;
 
-  public CommandController(PaintCanvas canvas, UserChoices choices, Picture picture) {
+  public CommandController(PaintCanvas canvas, UserChoices choices, Picture picture, Clipboard clipboard) {
     this.choices = choices;
     this.canvas = canvas;
     this.picture = picture;
+    this.clipboard = clipboard;
   }
 
   public void onDraw(Point start, Point end) {
@@ -45,5 +48,13 @@ public class CommandController {
     CommandHistory.redo();
     canvas.repaint();
   }
+
+  public void onCopy() {clipboard.copy();}
+
+  public void onPaste() {
+    clipboard.paste();
+    canvas.repaint();
+  }
+
 }
 

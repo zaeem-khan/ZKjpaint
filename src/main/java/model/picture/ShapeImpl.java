@@ -15,6 +15,7 @@ public class ShapeImpl implements Shape {
   private DrawStrategy fillStrategy = null;
   private DrawStrategy borderStrategy = null;
   private DrawStrategy selectedStrategy = null;
+  private ShapeShadingType shadingType;
 
   public ShapeImpl(
       Region region,
@@ -29,6 +30,7 @@ public class ShapeImpl implements Shape {
     this.fillStrategy = fillStrategy;
     this.borderStrategy = borderStrategy;
     this.selectedStrategy = selectedStrategy;
+    this.shadingType = shadingType;
   }
 
   public Color fillColor() { return fillColor; }
@@ -48,4 +50,8 @@ public class ShapeImpl implements Shape {
 
   @Override
   public void drawSelected(Graphics2D graphics) { selectedStrategy.draw(graphics, this); }
+
+  public Shape copy() {
+    return new ShapeImpl(region.copy(), fillColor, borderColor, fillStrategy, borderStrategy, selectedStrategy, shadingType);
+  }
 }

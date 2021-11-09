@@ -13,4 +13,5 @@ public interface Shape {
   Region region();
   void move(int deltaX, int deltaY);
   void drawSelected(Graphics2D graphics);
+  Shape copy();
 }

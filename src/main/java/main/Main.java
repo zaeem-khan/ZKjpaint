@@ -5,6 +5,7 @@
  */
 package main;
 
+import controller.Clipboard;
 import controller.interfaces.EventConnector;
 import controller.EventConnectorImpl;
 import controller.KeyboardInterface;
@@ -31,14 +32,14 @@ public class Main {
         GuiWindow guiWindow = new GuiWindowImpl(paintCanvas);
         UiModule uiModule = new Gui(guiWindow);
         UserChoices userChoices = new UserChoicesImpl(uiModule);
-        CommandController commandControl = new CommandController(paintCanvas, userChoices, picture);
+        Clipboard clipboard = new Clipboard(picture, paintCanvas);
+        CommandController commandControl = new CommandController(paintCanvas, userChoices, picture, clipboard);
         EventConnector controller = new EventConnectorImpl(uiModule, userChoices, commandControl);
 
         KeyboardInterface keys = new KeyboardInterface(paintCanvas, userChoices);
         keys.setup();
 
-        CommandController c = new CommandController(paintCanvas, userChoices, picture);
-        MouseHandler mouse = new MouseHandler(c);
+        MouseHandler mouse = new MouseHandler(commandControl);
         paintCanvas.addMouseListener(mouse);
         controller.setup();
     }

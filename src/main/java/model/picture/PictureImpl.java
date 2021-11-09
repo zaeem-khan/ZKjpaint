@@ -32,9 +32,16 @@ public class PictureImpl implements Picture {
   }
 
   @Override
+  public void add(List<Shape> shapes) { elements.addAll(shapes); }
+
+  @Override
   public void draw(Graphics2D g) {
     for (Shape s : elements) {
       s.draw(g);
+    }
+
+    for (Shape s : selected) {
+      s.drawSelected(g);
     }
   }
 

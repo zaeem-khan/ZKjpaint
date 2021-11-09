@@ -19,7 +19,7 @@ public class RectangleExpert extends DrawExpert {
   public static void drawBorder(Graphics2D graphics, Shape shape) {
     Region region = shape.region();
     graphics.setColor(shape.borderColor());
-    graphics.setStroke(new BasicStroke(3));
+    graphics.setStroke(new BasicStroke(5));
     drawBorder(graphics, region);
   }
 
