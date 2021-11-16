@@ -1,9 +1,8 @@
 package controller.command;
 
 import controller.interfaces.Command;
-import model.interfaces.Picture;
+import view.interfaces.Picture;
 import model.interfaces.Region;
-import model.picture.Point;
 
 public class SelectShapeCommand implements Command {
 

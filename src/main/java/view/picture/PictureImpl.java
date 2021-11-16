@@ -3,17 +3,17 @@
  * Topic: JPaint
  * Author: Dan Walker
  */
-package model.picture;
+package view.picture;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-import model.interfaces.Picture;
+import view.interfaces.Picture;
 import model.interfaces.Region;
-import model.interfaces.Shape;
+import view.interfaces.Shape;
 
 /**
- * @see model.interfaces.Picture
+ * @see Picture
  */
 public class PictureImpl implements Picture {
 

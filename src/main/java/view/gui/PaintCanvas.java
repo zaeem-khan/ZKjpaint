@@ -8,7 +8,7 @@ package view.gui;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
-import model.interfaces.Picture;
+import view.interfaces.Picture;
 
 /**
  * PaintCanvas is responsible for responding to the graphics system when it

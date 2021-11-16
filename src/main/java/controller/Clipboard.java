@@ -5,8 +5,8 @@ import controller.interfaces.Undoable;
 import controller.command.CommandFactory;
 import java.util.ArrayList;
 import java.util.List;
-import model.interfaces.Picture;
-import model.interfaces.Shape;
+import view.interfaces.Picture;
+import view.interfaces.Shape;
 import view.gui.PaintCanvas;
 
 

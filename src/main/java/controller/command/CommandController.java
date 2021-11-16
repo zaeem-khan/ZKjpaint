@@ -7,13 +7,11 @@ package controller.command;
 
 import controller.Clipboard;
 import model.interfaces.Region;
-import model.interfaces.Shape;
 import model.interfaces.UserChoices;
 import model.picture.Point;
-import model.interfaces.Picture;
+import view.interfaces.Picture;
 import model.picture.RegionImpl;
 import view.gui.PaintCanvas;
-import controller.interfaces.Undoable;
 import controller.interfaces.Command;
 
 /**

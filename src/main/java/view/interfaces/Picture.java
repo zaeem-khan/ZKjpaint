@@ -1,7 +1,8 @@
-package model.interfaces;
+package view.interfaces;
 
 import java.awt.Graphics2D;
 import java.util.List;
+import model.interfaces.Region;
 
 /**
  * Represents the collection of all the items the user has

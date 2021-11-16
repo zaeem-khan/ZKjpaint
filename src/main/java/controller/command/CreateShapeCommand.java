@@ -10,9 +10,9 @@ import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import java.awt.Color;
 import model.interfaces.Region;
-import model.interfaces.Shape;
+import view.interfaces.Shape;
 import model.interfaces.UserChoices;
-import model.interfaces.Picture;
+import view.interfaces.Picture;
 import view.gui.PaintCanvas;
 
 /**

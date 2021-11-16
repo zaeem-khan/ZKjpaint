@@ -3,9 +3,9 @@ package controller.command;
 import controller.interfaces.Command;
 import java.util.List;
 import model.MouseMode;
-import model.interfaces.Picture;
+import view.interfaces.Picture;
 import model.interfaces.Region;
-import model.interfaces.Shape;
+import view.interfaces.Shape;
 import model.interfaces.UserChoices;
 import view.gui.PaintCanvas;
 

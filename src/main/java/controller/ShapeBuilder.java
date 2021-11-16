@@ -3,21 +3,22 @@ package controller;
 import java.awt.Color;
 import model.ShapeShadingType;
 import model.ShapeType;
-import model.interfaces.DrawStrategy;
+import view.interfaces.DrawStrategy;
 import model.interfaces.Region;
-import model.interfaces.Shape;
-import model.picture.EllipseExpert;
-import model.picture.NullDrawer;
-import model.picture.RectangleExpert;
-import model.picture.ShapeDrawer;
-import model.picture.ShapeImpl;
-import model.picture.TriangleExpert;
+import view.interfaces.Shape;
+import view.picture.ShapeImpl;
+import view.strategy.BasicDrawer;
+import view.strategy.BorderDrawer;
+import view.strategy.EllipseDrawer;
+import view.strategy.EmptyShapeDrawer;
+import view.strategy.RectangleDrawer;
+import view.strategy.TriangleDrawer;
 
 public class ShapeBuilder {
   private Color fillColor;
   private Color borderColor;
   private ShapeType type;
-  private ShapeShadingType shadingType;
+  private ShapeShadingType shading;
   private Region region;
 
   public ShapeBuilder setFillColor(Color color) {
@@ -40,53 +41,40 @@ public class ShapeBuilder {
     return this;
   }
   
-  public ShapeBuilder setShadingType(ShapeShadingType shadingType) {
-    this.shadingType = shadingType;
+  public ShapeBuilder setShadingType(ShapeShadingType shading) {
+    this.shading = shading;
     return this;
   }
 
   public Shape build() {
 
-    DrawStrategy fillStrategy = new NullDrawer();
-    DrawStrategy borderStrategy = new NullDrawer();
-    DrawStrategy selectedStrategy;
-    Shape newShape;
+
+    Shape newShape = null;
     DrawStrategy drawStrategy = null;
 
     switch (type) {
       
       case ELLIPSE:
-        if (shadingType == ShapeShadingType.FILLED_IN || shadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-          fillStrategy = new ShapeDrawer(EllipseExpert::drawFilled);
-        }
-        if (shadingType == ShapeShadingType.OUTLINE || shadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-          borderStrategy = new ShapeDrawer(EllipseExpert::drawBorder);
-        }
-        selectedStrategy = new ShapeDrawer(EllipseExpert::drawSelected);
+        drawStrategy = new EllipseDrawer();
         break;
       case RECTANGLE:
-        if (shadingType == ShapeShadingType.FILLED_IN || shadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-          fillStrategy = new ShapeDrawer(RectangleExpert::drawFilled);
-        }
-        if (shadingType == ShapeShadingType.OUTLINE || shadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-          borderStrategy = new ShapeDrawer(RectangleExpert::drawBorder);
-        }
-        selectedStrategy = new ShapeDrawer(RectangleExpert::drawSelected);
+        drawStrategy = new RectangleDrawer();
         break;
       case TRIANGLE:
-        if (shadingType == ShapeShadingType.FILLED_IN || shadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-          fillStrategy = new ShapeDrawer(TriangleExpert::drawFilled);
-        }
-        if (shadingType == ShapeShadingType.OUTLINE || shadingType == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-          borderStrategy = new ShapeDrawer(TriangleExpert::drawBorder);
-        }
-        selectedStrategy = new ShapeDrawer(TriangleExpert::drawSelected);
+        drawStrategy = new TriangleDrawer();
         break;
       default:
-        throw new IllegalArgumentException("Unknown ShapeShadingType");
+        throw new IllegalArgumentException("Unknown ShapeType");
     }
 
-    newShape = new ShapeImpl(region, fillColor, borderColor, fillStrategy, borderStrategy, selectedStrategy, shadingType);
+    if (shading != ShapeShadingType.FILLED_IN) {
+      if (shading == ShapeShadingType.OUTLINE) {
+        drawStrategy = new EmptyShapeDrawer((BasicDrawer) drawStrategy);
+      }
+      drawStrategy = new BorderDrawer(drawStrategy);
+    }
+
+    newShape = new ShapeImpl(region, fillColor, borderColor, drawStrategy, shading);
     return newShape;
   }
 }

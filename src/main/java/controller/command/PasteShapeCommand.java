@@ -4,8 +4,8 @@ import controller.interfaces.Command;
 import controller.interfaces.Undoable;
 import java.util.ArrayList;
 import java.util.List;
-import model.interfaces.Picture;
-import model.interfaces.Shape;
+import view.interfaces.Picture;
+import view.interfaces.Shape;
 import view.gui.PaintCanvas;
 
 public class PasteShapeCommand implements Command, Undoable {
