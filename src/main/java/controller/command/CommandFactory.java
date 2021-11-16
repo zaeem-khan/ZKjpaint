@@ -33,5 +33,9 @@ public class CommandFactory {
     public static Command makePasteCommand(Picture picture, List<Shape> contents, PaintCanvas canvas) {
     return new PasteShapeCommand(picture, contents, canvas);
     }
+
+    public static Command makeDeleteCommand(Picture picture, PaintCanvas canvas) {
+      return new DeleteShapeCommand(picture, canvas);
+    }
 }
 

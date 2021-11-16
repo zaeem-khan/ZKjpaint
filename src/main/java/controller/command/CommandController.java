@@ -7,6 +7,7 @@ package controller.command;
 
 import controller.Clipboard;
 import model.interfaces.Region;
+import model.interfaces.Shape;
 import model.interfaces.UserChoices;
 import model.picture.Point;
 import model.interfaces.Picture;
@@ -53,6 +54,13 @@ public class CommandController {
 
   public void onPaste() {
     clipboard.paste();
+    canvas.repaint();
+  }
+
+  public void onDelete() {
+    Command cmd = CommandFactory.makeDeleteCommand(picture, canvas);
+    cmd.run();
+
     canvas.repaint();
   }
 
