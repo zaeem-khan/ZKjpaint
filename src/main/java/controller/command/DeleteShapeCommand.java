@@ -39,7 +39,5 @@ public class DeleteShapeCommand implements Command, Undoable {
   }
 
   @Override
-  public void redo() {
-    run();
-  }
+  public void redo() { picture.remove(shapeToDelete); }
 }
